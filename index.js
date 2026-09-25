@@ -1,28 +1,3 @@
-const {
-  Discord,
-  Client,
-  Collection,
-  RichEmbed,
-  Shard
-} = require("discord.js");
-// const { prefix } = require("./botconfig.json");
-const bot = new Client();
-require("dotenv").config();
-const {
-  aqua,
-  green_light,
-  gold,
-  red_dark,
-  dark_red,
-  red_light
-} = require("./colours.json");
-["aliases", "commands"].forEach(x => (bot[x] = new Collection()));
-["console", "command", "event"].forEach(x => require(`./handlers/${x}`)(bot));
-bot.on("ready", () => {
-  try {
-    console.log(bot.user.username + " is online and operational");
-  } catch (err) {
-    console.log(err);
-  }
-});
-bot.login(process.env.token);
+require('dotenv').config();
+const {createDatabase}=require('./src/database'),{createBot}=require('./src/bot'),{startTwitchService}=require('./src/twitch'),{createDashboard}=require('./src/web');
+(async()=>{const need=['DISCORD_TOKEN','DISCORD_CLIENT_ID','DATABASE_HOST','DATABASE_USER','DATABASE_NAME'],missing=need.filter(k=>!process.env[k]);if(missing.length)throw new Error('Missing environment variables: '+missing.join(', '));const db=await createDatabase(),client=createBot(db);await client.login(process.env.DISCORD_TOKEN);createDashboard({client,db}).listen(Number(process.env.PORT||3000),()=>console.log('[web] dashboard ready'));startTwitchService({client,db});const stop=async()=>{client.destroy();await db.end();process.exit(0)};process.once('SIGINT',stop);process.once('SIGTERM',stop);})().catch(e=>{console.error('[fatal]',e);process.exit(1)});

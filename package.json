@@ -1,46 +1,7 @@
 {
-  "name": "mutlibot",
-  "version": "2.0.4",
-  "description": "Discord bot using node modules with advanced help commands",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "dev": "nodemon index"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OwnerHunter/DiscordJs-MultiBot.git"
-  },
-  "keywords": [
-    "Discordjs",
-    "discord.js",
-    "MultiBot",
-    "Hunters Web Designs"
-  ],
-  "dependencies": {
-    "array-sort": "^1.0.0",
-    "bfdapi.js": "^2.0.1",
-    "common-tags": "^1.8.0",
-    "discord-bot-analytics": "^1.0.9",
-    "discord.js": "^11.5.1",
-    "dotenv": "^8.2.0",
-    "fs": "^0.0.1-security",
-    "long": "^4.0.0",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.1",
-    "node-fetch": "^2.6.0",
-    "node-superfetch": "^0.1.9",
-    "utill": "^0.1.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6",
-    "table": "^6.0.3"
-  },
-  "author": "OwnerHunter",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/OwnerHunter/DiscordJs-MultiBot/issues"
-  },
-  "homepage": "https://github.com/OwnerHunter/DiscordJs-MultiBot#readme"
+  "name":"multibot-v2","version":"3.0.0","description":"MultiBot for discord.js v14 with dashboard, SQL, tickets, verification, broadcasts and Twitch alerts.","main":"index.js",
+  "scripts":{"start":"node index.js","dev":"nodemon index.js","check":"node --check index.js && node --check src/database.js && node --check src/bot.js && node --check src/twitch.js && node --check src/web.js"},
+  "engines":{"node":">=18"},
+  "dependencies":{"discord.js":"^14.27.0","dotenv":"^17.2.2","express":"^5.1.0","express-session":"^1.18.2","mysql2":"^3.14.5"},
+  "devDependencies":{"nodemon":"^3.1.10"},"license":"MIT"
 }
